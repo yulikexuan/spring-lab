@@ -6,6 +6,9 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Arrays;
 
 
 @Slf4j
@@ -16,11 +19,24 @@ public class SpringContainerLabApp {
 
         log.info(">>> Instantiating SpringApplication Class ... ");
 
+        quickRun(args);
+
         // instantiateSpringApplication(args);
-        instantiateSpringAppWithBuilder(args);
+        // instantiateSpringAppWithBuilderToRun(args);
     }
 
-    static void instantiateSpringApplication(final String[] args) {
+    static void quickRun(final String[] args) {
+
+        final ConfigurableApplicationContext appCtx =
+                SpringApplication.run(SpringContainerLabApp.class, args);
+
+        Arrays.stream(appCtx.getBeanDefinitionNames())
+                .sorted()
+                .forEach(
+                bn -> log.info(">>> Bean : {}", bn));
+    }
+
+    static void instantiateSpringApplicationToRun(final String[] args) {
 
         final var app = new SpringApplication(SpringContainerLabApp.class);
 
@@ -31,7 +47,7 @@ public class SpringContainerLabApp {
         app.run(args);
     }
 
-    static void instantiateSpringAppWithBuilder(final String[] args) {
+    static void instantiateSpringAppWithBuilderToRun(final String[] args) {
 
         new SpringApplicationBuilder(SpringContainerLabApp.class)
                 .headless(false)
