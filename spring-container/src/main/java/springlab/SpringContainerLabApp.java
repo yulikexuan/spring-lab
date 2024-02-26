@@ -19,7 +19,7 @@ public class SpringContainerLabApp {
 
         app.setHeadless(true);
         app.setBannerMode(Banner.Mode.OFF);
-        // app.setLogStartupInfo(false);
+        app.setLogStartupInfo(false);
 
         app.run(args);
     }
