@@ -14,23 +14,32 @@
     </parent>
 
     <groupId>spring.start.here</groupId>
-    <artifactId>spring-lab</artifactId>
+    <artifactId>spring-container-lab</artifactId>
     <version>3.2.3</version>
     <packaging>pom</packaging>
 
-    <name>spring-lab</name>
-    <description>The Lab of Spring Boot 3 and Spring Framework 6</description>
+    <name>spring-container-lab</name>
+    <description>
+        The Lab of the Container of Spring Boot 3 and Spring Framework 6
+    </description>
 
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-shell.version>3.2.2</spring-shell.version>
         <guava.version>33.0.0-jre</guava.version>
     </properties>
 
     <dependencyManagement>
 
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.shell</groupId>
+                <artifactId>spring-shell-starter</artifactId>
+                <version>${spring-shell.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -49,7 +58,7 @@
             <artifactId>spring-boot-properties-migrator</artifactId>
             <scope>runtime</scope>
         </dependency>
-        
+
         <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -119,6 +128,9 @@
 
     <modules>
         <module>spring-container</module>
+        <module>spring-shell</module>
+        <module>spring-external-bean-registration</module>
+        <module>spring-hierarchical-contexts</module>
     </modules>
 
 </project>
